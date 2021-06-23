@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param
 
 interface AlbumRepository: JpaRepository<Album, Long> {
 
-    fun findBySinger(singer: Singer?): List<Album?>?
+    fun findBySinger(singer: Singer): List<Album>
 
     @Query("select a from Album a where a.title like %:title%")
-    fun findByTitle(@Param("title") title: String?): List<Album?>?
+    fun findByTitle(@Param("title") title: String): List<Album>
 }
