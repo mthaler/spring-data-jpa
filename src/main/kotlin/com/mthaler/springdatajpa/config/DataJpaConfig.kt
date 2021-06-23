@@ -1,13 +1,14 @@
 package com.mthaler.springdatajpa.config
 
+import org.apache.commons.dbcp2.BasicDataSource
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.PropertySource
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.JpaVendorAdapter
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
@@ -22,16 +23,32 @@ import javax.sql.DataSource
 @EnableTransactionManagement
 @ComponentScan(basePackages = ["com.mthaler.springdatajpa"])
 @EnableJpaRepositories(basePackages = ["com.mthaler.springdatajpa"])
+@PropertySource("classpath:db/jdbc.properties")
 class DataJpaConfig {
+
+    @Value("\${driverClassName}")
+    private val driverClassName: String? = null
+
+    @Value("\${url}")
+    private val url: String? = null
+
+    @Value("\${username}")
+    private val username: String? = null
+
+    @Value("\${password}")
+    private val password: String? = null
 
     @Bean
     fun dataSource(): DataSource {
         return try {
-            val dbBuilder = EmbeddedDatabaseBuilder()
-            dbBuilder.setType(EmbeddedDatabaseType.H2)
-                .addScripts("classpath:db/schema.sql", "classpath:db/test-data.sql").build()
+            val dataSource = BasicDataSource()
+            dataSource.driverClassName = driverClassName
+            dataSource.url = url
+            dataSource.username = username
+            dataSource.password = password
+            dataSource
         } catch (e: Exception) {
-            logger.error("Embedded DataSource bean cannot be created!", e)
+            logger.error("DBCP DataSource bean cannot be created!", e)
             throw e
         }
     }
@@ -49,7 +66,8 @@ class DataJpaConfig {
     @Bean
     fun hibernateProperties(): Properties {
         val hibernateProp = Properties()
-        hibernateProp["hibernate.dialect"] = "org.hibernate.dialect.H2Dialect"
+        hibernateProp["hibernate.dialect"] = "org.hibernate.dialect.PostgreSQL9Dialect"
+        hibernateProp["hibernate.hbm2ddl.auto"] = "create-drop"
         hibernateProp["hibernate.format_sql"] = true
         hibernateProp["hibernate.use_sql_comments"] = true
         hibernateProp["hibernate.show_sql"] = true

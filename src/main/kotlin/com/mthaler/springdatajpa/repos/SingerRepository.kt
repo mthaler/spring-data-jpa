@@ -1,4 +1,4 @@
-package com.mthaler.springdatajpa
+package com.mthaler.springdatajpa.repos
 
 import com.mthaler.springdatajpa.entities.Singer
 import org.springframework.data.repository.CrudRepository

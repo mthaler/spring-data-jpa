@@ -1,4 +1,4 @@
-package com.mthaler.springdatajpa
+package com.mthaler.springdatajpa.services
 
 import com.mthaler.springdatajpa.entities.Singer
 

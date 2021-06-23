@@ -1,6 +1,7 @@
-package com.mthaler.springdatajpa
+package com.mthaler.springdatajpa.services
 
 import com.mthaler.springdatajpa.entities.Singer
+import com.mthaler.springdatajpa.repos.SingerRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

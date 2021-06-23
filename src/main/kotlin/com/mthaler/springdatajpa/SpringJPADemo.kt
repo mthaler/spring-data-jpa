@@ -1,12 +1,12 @@
 package com.mthaler.springdatajpa
 
+import com.mthaler.springdatajpa.config.DataJpaConfig
 import com.mthaler.springdatajpa.entities.Singer
-import org.springframework.context.support.GenericXmlApplicationContext
+import com.mthaler.springdatajpa.services.SingerService
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 fun main(args: Array<String>) {
-    val ctx = GenericXmlApplicationContext()
-    ctx.load("classpath:spring/app-context-annotation.xml")
-    ctx.refresh()
+    val ctx = AnnotationConfigApplicationContext(DataJpaConfig::class.java)
     val singerService = ctx.getBean(
         "springJpaSingerService", SingerService::class.java
     )

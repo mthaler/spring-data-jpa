@@ -2,6 +2,7 @@ package com.mthaler.springdatajpa
 
 import com.mthaler.springdatajpa.config.DataJpaConfig
 import com.mthaler.springdatajpa.entities.Singer
+import com.mthaler.springdatajpa.services.SingerService
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeAll
