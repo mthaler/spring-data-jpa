@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.apache.commons:commons-dbcp2:2.8.0")
 	implementation("org.hibernate:hibernate-entitymanager:5.5.2.Final")
 	implementation("org.springframework:spring-orm:5.3.8")
+	implementation("org.springframework.data:spring-data-jpa:2.5.2")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	runtimeOnly("org.postgresql:postgresql")
