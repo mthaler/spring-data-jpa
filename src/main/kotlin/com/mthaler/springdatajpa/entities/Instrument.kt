@@ -1,4 +1,4 @@
-package com.mthaler.springdatajpa
+package com.mthaler.springdatajpa.entities
 
 import java.io.Serializable
 import javax.persistence.*

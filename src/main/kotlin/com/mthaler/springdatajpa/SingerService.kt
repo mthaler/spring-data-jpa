@@ -1,9 +1,10 @@
 package com.mthaler.springdatajpa
 
 import com.mthaler.springdatajpa.entities.Singer
-import org.springframework.data.repository.CrudRepository
 
-interface SingerRepository: CrudRepository<Singer, Long> {
+interface SingerService {
+
+    fun findAll(): List<Singer>
 
     fun findByFirstName(firstName: String): List<Singer>
 

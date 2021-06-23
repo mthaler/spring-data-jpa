@@ -1,4 +1,4 @@
-package com.mthaler.springdatajpa
+package com.mthaler.springdatajpa.entities
 
 import java.io.Serializable
 import java.text.SimpleDateFormat
@@ -9,13 +9,13 @@ import javax.persistence.*
 @Entity
 @Table(name = "singer")
 @NamedQueries(
-    NamedQuery(name=Singer.FIND_ALL, query="select s from Singer s"),
-    NamedQuery(name=Singer.FIND_SINGER_BY_ID,
+    NamedQuery(name= Singer.FIND_ALL, query="select s from Singer s"),
+    NamedQuery(name= Singer.FIND_SINGER_BY_ID,
         query="select distinct s from Singer s " +
                 "left join fetch s.albums a " +
                 "left join fetch s.instruments i " +
                 "where s.id = :id"),
-    NamedQuery(name=Singer.FIND_ALL_WITH_ALBUM,
+    NamedQuery(name= Singer.FIND_ALL_WITH_ALBUM,
         query="select distinct s from Singer s " +
                 "left join fetch s.albums a " +
                 "left join fetch s.instruments i")
