@@ -1,9 +1,10 @@
 package com.mthaler.springdatajpa.config
 
-import com.mthaler.springdatajpa.repos.SingerRepository
 import com.mthaler.springdatajpa.entities.Album
 import com.mthaler.springdatajpa.entities.Instrument
 import com.mthaler.springdatajpa.entities.Singer
+import com.mthaler.springdatajpa.repos.InstrumentRepository
+import com.mthaler.springdatajpa.repos.SingerRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,26 +19,32 @@ class DBInitializer {
     @Autowired
     private lateinit var singerRepository: SingerRepository
 
+    @Autowired
+    private lateinit var instrumentRepository: InstrumentRepository
+
+
     @PostConstruct
     public fun initDB(){
         logger.info("Starting database initialization...")
 
         val guitar = Instrument()
         guitar.instrumentId = "Guitar"
-        //instrumentDao.save(guitar)
+        instrumentRepository.save(guitar)
 
         val piano = Instrument()
         piano.instrumentId = "Piano"
-        //instrumentDao.save(piano)
+        instrumentRepository.save(piano)
 
         val voice = Instrument()
         voice.instrumentId = "Voice"
-        //xinstrumentDao.save(voice)
+        instrumentRepository.save(voice)
 
         var singer = Singer()
         singer.firstName = "John"
         singer.lastName = "Mayer"
-        singer.birthDate = Date(GregorianCalendar(1977, 9, 16).time.time)
+        singer.birthDate = Date(
+            GregorianCalendar(1977, 9, 16).time.time
+        )
         singer.addInstrument(guitar)
         singer.addInstrument(piano)
 
@@ -60,7 +67,9 @@ class DBInitializer {
         singer = Singer()
         singer.firstName = "Eric"
         singer.lastName = "Clapton"
-        singer.birthDate = Date(GregorianCalendar(1945, 2, 30).time.time)
+        singer.birthDate = Date(
+            GregorianCalendar(1945, 2, 30).time.time
+        )
         singer.addInstrument(guitar)
 
         val album = Album()
@@ -75,7 +84,9 @@ class DBInitializer {
         singer = Singer()
         singer.firstName = "John"
         singer.lastName = "Butler"
-        singer.birthDate = Date(GregorianCalendar(1975, 3, 1).time.time)
+        singer.birthDate = Date(
+            GregorianCalendar(1975, 3, 1).time.time
+        )
         singer.addInstrument(guitar)
 
         singerRepository.save(singer)

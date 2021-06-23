@@ -22,7 +22,7 @@ import javax.sql.DataSource
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = ["com.mthaler.springdatajpa"])
-@EnableJpaRepositories(basePackages = ["com.mthaler.springdatajpa"])
+@EnableJpaRepositories(basePackages = ["com.mthaler.springdatajpa.repos"])
 @PropertySource("classpath:db/jdbc.properties")
 class DataJpaConfig {
 

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 class AlbumServiceImpl: AlbumService {
 
     @Autowired
-    private val albumRepository: AlbumRepository? = null
+    private lateinit var albumRepository: AlbumRepository
 
     @Transactional(readOnly = true)
     override fun findBySinger(singer: Singer): List<Album> {
